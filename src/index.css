@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Atma');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Atma';font-size: 22px;
+    background-color:#39CCCC;
+}

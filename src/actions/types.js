@@ -1,0 +1,5 @@
+export const USERS = "USERS"
+export const USER_AUTHENTICATION = "USER_AUTHENTICATION"
+export const QUESTIONS = "QUESTIONS"
+export const ADDNEWQUESTION = "ADDNEWQUESTION"
+export const LOG_OUT = "LOG_OUT"
