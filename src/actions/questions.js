@@ -1,10 +1,10 @@
 import {hideLoading, showLoading} from 'react-redux-loading'
-import {ADDNEWQUESTION, QUESTIONS} from "./types";
+import {ADDNEWQUESTION, QUESTIONS} from "./variables";
 import {saveQuestion, saveQuestionAnswer} from "../utils/api"
-import {handleInitialData} from "./shared";
+import {handleDataSet} from "./set";
 
 
-export function receiveQuestions(questions) {
+export function questionList(questions) {
     return {
         type: QUESTIONS,
         questions
@@ -12,14 +12,14 @@ export function receiveQuestions(questions) {
 
 }
 
-export function addQuestion(question) {
+export function addnewQuestion(question) {
     return {
         type: ADDNEWQUESTION,
         question
     }
 }
 
-export function handleAddQuestion(optionOneText, optionTwoText) {
+export function handleQuestionChoice(optionOneText, optionTwoText) {
     return (dispatch, getState) => {
         const {authedUser} = getState()
         dispatch(showLoading())
@@ -29,7 +29,7 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
             author: authedUser
         })
             .then(() => {
-                dispatch(handleInitialData())
+                dispatch(handleDataSet())
                 dispatch(hideLoading())
             })
     }
@@ -41,7 +41,7 @@ export function handleAnswerQuestion(qid, answer) {
         dispatch(showLoading())
         return saveQuestionAnswer(authedUser, qid, answer)
             .then(() => {
-                dispatch(handleInitialData())
+                dispatch(handleDataSet())
                 dispatch(hideLoading())
             })
     }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap'
 import {connect} from 'react-redux'
-import Poll from './PollSummary'
+import VoteInfo from './VoteInfo'
 import classnames from 'classnames';
 
 class Dashboard extends Component {
@@ -49,14 +49,14 @@ class Dashboard extends Component {
 
                         <ul>
                             {notAnsweredQIds.map((questionId) => (
-                                <li key={questionId}><Poll id={questionId}/></li>
+                                <li key={questionId}><VoteInfo id={questionId}/></li>
                             ))}
                         </ul>
                     </TabPane>
                     <TabPane tabId="2">
                         <ul>
                             {answeredQIds.map((questionId) => (
-                                <li key={questionId}><Poll id={questionId}/></li>
+                                <li key={questionId}><VoteInfo id={questionId}/></li>
                             ))}
                         </ul>
                     </TabPane>
@@ -66,7 +66,7 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({questions, authedUser}) {
+function passParamsAndValues({questions, authedUser}) {
 
     const notAnsweredQuestions = Object.values(questions).filter((question) =>
         !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser))
@@ -83,4 +83,4 @@ function mapStateToProps({questions, authedUser}) {
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(passParamsAndValues)(Dashboard)

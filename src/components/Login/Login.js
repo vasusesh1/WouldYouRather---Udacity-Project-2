@@ -1,49 +1,52 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './Login.css'
+import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {Button, Form, FormGroup, Label} from 'reactstrap'
-import {authenticateUser} from "../../actions/authedUser"
-import {Link, Redirect} from 'react-router-dom'
+import {Userauth} from "../../actions/authenticateUser"
 
 class Login extends Component {
     state = {
-        username: '',
-        isLogged: false
+        userName: '',
+        logBoolean: false
     }
-    handleSubmit = (e) => {
+
+    submitProcess = (e) => {
         e.preventDefault()
-        const {username} = this.state
+        const {userName} = this.state
         const {dispatch} = this.props
 
-        if (username !== "") {
-            dispatch(authenticateUser(username))
-            this.setState(() => ({isLogged: true}))
+        if (userName !== "") {
+            dispatch(Userauth(userName))
+            this.setState(() => ({logBoolean: true}))
         }
     }
-    handleChange = (e) => {
-        const username = e.target.value
-        this.setState(() => ({username}))
+
+    processChange = (e) => {
+        const userName = e.target.value
+        this.setState(() => ({userName}))
     }
 
     render() {
         const {from} = this.props.location.state || {from: {pathname: '/'}}
 
-        const {isLogged} = this.state
+        const {logBoolean} = this.state
 
-        if (isLogged) {
+        if (logBoolean) {
             return <Redirect to={from}/>
         }
 
 
         return (
-            <Form onSubmit={this.handleSubmit} className="form-signin">
-                <h2 className="form-heading">Please sign in</h2>
+            <Form onSubmit={this.submitProcess} className="login">
+                <h2 className="form-heading">Hi!! Let's get you logged in..</h2>
                 <FormGroup>
-                    <Label htmlFor="username" className="sr-name">User</Label>
+                    <Label htmlFor="userName" className="sr-name">UserName</Label>
 
-                    <select id="username" className="form-control"
-                            value={this.state.username}
-                            onChange={this.handleChange}>
+                    <select id="userName" className="us-name"
+                            value={this.state.userName}
+                            onChange={this.processChange}>
                         <option value='' disabled>Select</option>
                         {this.props.users.map((user) => (
                                 <option key={user.id} value={user.id}>{user.name}</option>
@@ -54,13 +57,13 @@ class Login extends Component {
                 </FormGroup>
                 <Button type="submit" id="_submit" name="_submit"
                         className="btn btn-lg btn-primary btn-block">Login</Button>
-                <Link to="/register">Sign Up</Link>
+                <Link to="/register">New user? Register here</Link>
             </Form>
         )
     }
 }
 
-function mapStateToProps({users, authedUser}) {
+function passParamsAndValues({users, authedUser}) {
     return {
         users: Object.values(users).map((user) => {
             return ({
@@ -72,4 +75,4 @@ function mapStateToProps({users, authedUser}) {
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(passParamsAndValues)(Login)

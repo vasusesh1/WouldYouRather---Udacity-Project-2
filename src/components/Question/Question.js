@@ -1,19 +1,20 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import Choice from "./Choice"
+import UserProfile from '../common/UserProfile'
+import ErrorHandling from "./ErrorHandling";
 import {Row} from 'reactstrap'
 import {handleAnswerQuestion} from '../../actions/questions'
-import Option from "./Option"
-import UserSummary from '../common/UserSummary'
-import MissingQuestion from "./MissingQuestion";
+
 
 class Question extends Component {
     state = {
-        vote: false
+        logVote: false
     }
 
-    handleVote = (vote) => {
+    manageVotes = (logVote) => {
         const {dispatch, question} = this.props
-        dispatch(handleAnswerQuestion(question.id, vote))
+        dispatch(handleAnswerQuestion(question.id, logVote))
     }
 
     render() {
@@ -23,22 +24,22 @@ class Question extends Component {
                 {question
                     ?
                     (<div>
-                        <h1>Would you rather</h1>
+                        <h2>Would you rather ??..</h2>
                         <Row>
-                            <UserSummary id={question.author}/>
+                            <UserProfile id={question.author}/>
                         </Row>
                         <Row>
-                            <Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
-                            <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>
+                            <Choice questionId={question.id} optionName="optionOne" onClick={this.manageVotes}/>
+                            <Choice questionId={question.id} optionName="optionTwo" onClick={this.manageVotes}/>
                         </Row>
                     </div>)
-                    : <MissingQuestion/>}
+                    : <ErrorHandling/>}
             </Fragment>
         )
     }
 }
 
-function mapStateToProps({questions, users, authedUser}, props) {
+function passParamsAndValues({questions, users, authedUser}, props) {
     const {question_id} = props.match.params
     const question = questions[question_id]
     const user = users[authedUser]
@@ -50,4 +51,4 @@ function mapStateToProps({questions, users, authedUser}, props) {
     }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(passParamsAndValues)(Question)

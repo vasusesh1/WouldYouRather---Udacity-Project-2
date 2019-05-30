@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
-import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
 import {connect} from 'react-redux'
+import {handleQuestionChoice} from "../actions/questions"
+import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
 import {Redirect} from 'react-router-dom'
-
-import {handleAddQuestion} from "../actions/questions"
 
 class NewQuestion extends Component {
     state = {
-        optionOne: '',
-        optionTwo: '',
-        toDashboard: false
+        q1: '',
+        q2: '',
+        routeTo: false
     }
 
     handleChange = (e) => {
@@ -20,46 +19,46 @@ class NewQuestion extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const {optionOne, optionTwo} = this.state
+        const {q1, q2} = this.state
         const {dispatch} = this.props
 
-        dispatch(handleAddQuestion(optionOne, optionTwo))
+        dispatch(handleQuestionChoice(q1, q2))
 
         this.setState(() => ({
-            optionOne: '',
-            optionTwo: '',
-            toDashboard: true
+            q1: '',
+            q2: '',
+            routeTo: true
         }))
     }
 
     render() {
-        const {optionOne, optionTwo, toDashboard} = this.state
+        const {q1, q2, routeTo} = this.state
 
-        if (toDashboard === true) {
+        if (routeTo === true) {
             return <Redirect to='/'/>
         }
         return (
             <div>
-                <h1>Would You Rather...</h1>
+                <h1>Would You Rather??..</h1>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="optionOne">Option One</Label>
+                        <Label for="q1">Question 1</Label>
                         <Input
                             type="text"
-                            id="optionOne"
-                            placeholder="First Option"
+                            id="q1"
+                            placeholder="First Choice"
                             onChange={this.handleChange}/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="optionTwo">Option Two</Label>
+                        <Label for="q2">Question 2</Label>
                         <Input
                             type="text"
-                            id="optionTwo"
-                            placeholder="Second Option"
+                            id="q2"
+                            placeholder="Second Choice"
                             onChange={this.handleChange}/>
                     </FormGroup>
                     <Button
-                        disabled={optionOne === '' && optionTwo === ''}>Add Question</Button>
+                        disabled={q1 === '' && q2 === ''}>Add New Question</Button>
                 </Form>
             </div>
         )

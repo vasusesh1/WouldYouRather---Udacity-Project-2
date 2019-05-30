@@ -1,0 +1,10 @@
+References:
+
+https://reactjs.org/tutorial/tutorial.html (Complete Reference)
+https://reactjs.org/tutorial/tutorial.html#making-an-interactive-component
+https://medium.com/@joshuaaguilar20/create-a-quiz-with-react-6bd826c04f6
+https://reactstrap.github.io/components/alerts/
+https://blog.theodo.com/2015/11/how-to-quickly-develop-a-quiz-component-with-reactjs/
+https://www.robinwieruch.de/react-pass-props-to-component/
+https://stackoverflow.com/questions/32370994/how-to-pass-props-to-this-props-children
+https://reactjs.org/docs/forms.html

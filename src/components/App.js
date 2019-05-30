@@ -5,10 +5,10 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from "./Dashboard";
 import Login from './Login/Login'
-import PrivateRoute from './common/PrivateRoute'
+import RoutingLogic from './common/RoutingLogic'
 import NewQuestion from './NewQuestion'
 import {connect} from 'react-redux'
-import {handleInitialData} from "../actions/shared"
+import {handleDataSet} from "../actions/set"
 import Leaderboard from "./Leaderboard/Leaderboard"
 import Question from './Question/Question'
 import Registration from "./Registration/Registration";
@@ -16,7 +16,7 @@ import {isEmpty} from "../utils/helpers";
 
 class App extends Component {
     componentDidMount() {
-        this.props.dispatch(handleInitialData())
+        this.props.dispatch(handleDataSet())
     }
 
     render() {
@@ -29,10 +29,10 @@ class App extends Component {
                         : <div>
                             <Route path="/login" component={Login}/>
                             <Route path="/register" component={Registration}/>
-                            <PrivateRoute path="/" exact component={Dashboard}/>
-                            <PrivateRoute path="/leaderboard" component={Leaderboard}/>
-                            <PrivateRoute path="/add" component={NewQuestion}/>
-                            <PrivateRoute path="/questions/:question_id" component={Question}/>
+                            <RoutingLogic path="/" exact component={Dashboard}/>
+                            <RoutingLogic path="/leaderboard" component={Leaderboard}/>
+                            <RoutingLogic path="/add" component={NewQuestion}/>
+                            <RoutingLogic path="/questions/:question_id" component={Question}/>
                         </div>}
                 </Fragment>
             </Router>
@@ -40,12 +40,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps({questions, users}) {
+function passParamsAndValues({questions, users}) {
     return {
         loading: isEmpty(questions) || isEmpty(users)
     }
 }
 
-export default connect(mapStateToProps)(App);
-//TODO: optimistic behavior
-//TODO: Show friendly message when page does not exist
+export default connect(passParamsAndValues)(App);

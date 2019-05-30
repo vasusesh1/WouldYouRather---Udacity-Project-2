@@ -1,0 +1,7 @@
+.pink-highlight {
+  text-shadow: 
+     3px 0px 3px #DDA0DD,
+    -3px 0px 3px #DDA0DD,
+     6px 0px 6px #DDA0DD,
+    -6px 0px 6px #DDA0DD;
+}

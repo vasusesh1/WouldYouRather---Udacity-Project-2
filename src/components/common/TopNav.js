@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 
 
 import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink as BootstrapNavLink} from 'reactstrap'
-import {signOut} from "../../actions/authedUser"
+import {signOut} from "../../actions/authenticateUser"
 
 class TopNav extends Component {
     state = {
@@ -54,10 +54,10 @@ class TopNav extends Component {
     }
 }
 
-function mapStateToProps({authedUser, users}) {
+function passParamsAndValues({authedUser, users}) {
     return {
         user: users[authedUser]
     }
 }
 
-export default connect(mapStateToProps)(TopNav)
+export default connect(passParamsAndValues)(TopNav)
