@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import './Login.css'
-import {Link} from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
+
 import {Button, Form, FormGroup, Label} from 'reactstrap'
 import {Userauth} from "../../actions/authenticateUser"
+import './Login.css'
+import {connect} from 'react-redux'
+
+import {Redirect} from 'react-router-dom'
+
+import {Link} from 'react-router-dom'
 
 class Login extends Component {
     state = {

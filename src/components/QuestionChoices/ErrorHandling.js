@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {Component} from 'react'
 
 class ErrorHandling extends Component {
     render() {
         return (
             <div>
-                <h2>404: Question not found</h2>
+                <p>Error: Not Found!</p>
             </div>
         )
     }

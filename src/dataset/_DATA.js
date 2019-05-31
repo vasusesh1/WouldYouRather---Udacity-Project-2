@@ -211,7 +211,7 @@ function userProfile({username, name, avatarURL}) {
     }
 }
 
-export function _saveNewUser(user) {
+export function _addNewUser(user) {
     return new Promise((res, rej) => {
         var userInfo = userProfile(user)
 

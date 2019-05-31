@@ -1,4 +1,4 @@
-import {addUser} from "../utils/api"
+import {addUser} from "../dataset/functions"
 import {hideLoading, showLoading} from 'react-redux-loading'
 import {USERS} from "./variables";
 

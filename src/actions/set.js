@@ -1,7 +1,7 @@
 import {hideLoading, showLoading} from 'react-redux-loading'
 import {userList} from "./userprofile";
 import {questionList} from "./questions";
-import {getInitialData} from "../utils/api"
+import {getInitialData} from "../dataset/functions"
 
 
 export function handleDataSet() {

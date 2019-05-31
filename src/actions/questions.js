@@ -1,6 +1,6 @@
 import {hideLoading, showLoading} from 'react-redux-loading'
 import {ADDNEWQUESTION, QUESTIONS} from "./variables";
-import {saveQuestion, saveQuestionAnswer} from "../utils/api"
+import {saveQuestion, saveQuestionAnswer} from "../dataset/functions"
 import {handleDataSet} from "./set";
 
 

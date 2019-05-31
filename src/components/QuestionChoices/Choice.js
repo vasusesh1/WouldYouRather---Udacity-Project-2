@@ -9,7 +9,6 @@ class Choice extends Component {
     clickEvent = (e) => {
         e.preventDefault()
         const {onClick, optionName} = this.props
-        //onClick(optionName)
         onClick(optionName)
 
     }

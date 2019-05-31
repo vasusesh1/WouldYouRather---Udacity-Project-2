@@ -1,18 +1,18 @@
 import React, {Component, Fragment} from 'react';
-import LoadingBar from 'react-redux-loading'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from "./Dashboard";
 import Login from './Login/Login'
+import LoadingBar from 'react-redux-loading'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import '../App.css';
 import RoutingLogic from './common/RoutingLogic'
+import Question from './QuestionChoices/Question'
+import Registration from "./Registration/Registration";
 import NewQuestion from './NewQuestion'
 import {connect} from 'react-redux'
 import {handleDataSet} from "../actions/set"
 import Leaderboard from "./Leaderboard/Leaderboard"
-import Question from './Question/Question'
-import Registration from "./Registration/Registration";
-import {isEmpty} from "../utils/helpers";
+import {isEmpty} from "../dataset/checkpoint";
 
 class App extends Component {
     componentDidMount() {

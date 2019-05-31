@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
-import {connect} from 'react-redux'
-import Choice from "./Choice"
-import UserProfile from '../common/UserProfile'
+
+
 import ErrorHandling from "./ErrorHandling";
 import {Row} from 'reactstrap'
+import UserProfile from '../common/UserProfile'
+import {connect} from 'react-redux'
+import Choice from "./Choice"
 import {handleAnswerQuestion} from '../../actions/questions'
 
 

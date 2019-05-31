@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+
 import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
-import {Link, Redirect} from 'react-router-dom'
+
 import {addNewUser} from "../../actions/userprofile"
+import {connect} from 'react-redux'
+import {Link, Redirect} from 'react-router-dom'
 
 class Registration extends Component {
 
